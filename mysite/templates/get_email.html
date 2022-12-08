@@ -1,0 +1,35 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Start {% endblock %}
+{% block content %}
+{% for message in messages %}
+
+<div class='container'>
+<div class='alert alert-{{ message.tags }}'>{{ message }}</div>
+{% endfor %}
+</div>
+<br>
+<br>
+<div style='width:600px' class='container'>
+	<div class='card shadow p-3 mb-5'>
+		<div class='card-header'>
+			<h3><font size="6">Enter your email as user id</font></h3>
+		</div>
+		
+		<div class='card-body'>
+		<form name='login_data' action='.' method='POST'>
+		{% csrf_token %}
+			<table>
+				{{ email_form|crispy }}
+			</table>
+			<p><font size="2">※Email will only use to identify the user and create the user folder</font></p>
+			<button class="btn btn-dark text-left" type="submit">Submit</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

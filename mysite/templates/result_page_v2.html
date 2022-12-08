@@ -1,0 +1,115 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% block title %} Result_page {% endblock %}
+{% block content %}
+<div style="background-color:grey;">
+{% for message in messages %}
+<div class='alert alert-{{ message.tags }}'>{{ message }}</div>
+{% endfor %}
+<br>
+<h2 align="center"><font color="white" size='7'><b>User Result Page</b></font></h2>
+<br>
+<h4 align="center"><font color="white">Please select your project and download here</font></h4>
+<br>
+</div>
+<div class='container'>
+
+<hr>
+<br>
+<div class='card shadow p-3 mb-5 bg-white rounded'>
+    <div class='card-heading'>
+	    <h4><b>Imputation</b></h4>
+    </div>
+	<form role ="form" name = "imputation_result" id = "user_form" action="{% url 'result_page_v2' %}" method="POST">
+    <div class ='card-body'>		
+		{% csrf_token %}
+		<label for="imp_list">Choose a Project:</label>
+        <select id="imp_list" name="imp_selection">
+            <option value="" >--------------------</option>
+        {% for dir in result reversed%}
+            <option value="{{dir}}" >{{dir}}</option>        
+		
+		{% empty %}
+		    <option name value="">No data here</option>
+		{% endfor %}
+		</select>
+		<hr>
+	    <button class="btn btn-dark text-left" name="imputation" id ="button" type="submit" >Submit</button>
+		
+	</div>
+	</form>
+</div>
+
+<div class='card shadow p-3 mb-5 bg-white rounded'>
+    <div class='card-heading'>
+	    <h4><b>Reference</b></h4>
+    </div>
+    <form role ="form" name = "reference_result" id = "user_form" action="{% url 'result_page_v2' %}" method="POST">
+    <div class ='card-body'>
+	    {% csrf_token %}
+	    <label for="ref_list">Choose a Project:</label>
+        <select id="ref_list" name="ref_selection">
+            <option value="" >--------------------</option>
+		{% for dir in result2 reversed%}
+            <option value="{{dir}}" >{{dir}}</option>        
+		
+		{% empty %}
+		    <option name value="">No data here</option>
+		{% endfor %}
+		</select>
+		<hr>
+		<button class="btn btn-dark text-left" name="reference" id ="button" type="submit" >Submit</button>
+	</div>
+	</form>
+</div>
+
+<div class='card shadow p-3 mb-5 bg-white rounded'>
+    <div class='card-heading'>
+	    <h4><b>Split_chromosome</b></h4>
+    </div>
+    <form role ="form" name = "reference_result" id = "user_form" action="{% url 'result_page_v2' %}" method="POST">
+    <div class ='card-body'>
+	    {% csrf_token %}
+	    <label for="split_list">Choose a Project:</label>
+        <select id="split_list" name="split_selection">
+            <option value="" >--------------------</option>
+		{% for dir in result3 reversed%}
+            <option value="{{dir}}" >{{dir}}</option>        
+		
+		{% empty %}
+		    <option name value="">No data here</option>
+		{% endfor %}
+		</select>
+		<hr>
+		<button class="btn btn-dark text-left" name="split_chr" id ="button" type="submit" >Submit</button>
+	</div>
+	</form>
+</div>
+
+<div class='card shadow p-3 mb-5 bg-white rounded'>
+    <div class='card-heading'>
+	    <h4><b>LiftOver</b></h4>
+    </div>
+    <form role ="form" name = "liftover_result" id = "user_form" action="{% url 'result_page_v2' %}" method="POST">
+    <div class ='card-body'>
+	    {% csrf_token %}
+	    <label for="liftover_list">Choose a Project:</label>
+        <select id="liftover_list" name="liftover_selection">
+            <option value="" >--------------------</option>
+		{% for dir in result4 reversed%}
+            <option value="{{dir}}" >{{dir}}</option>        
+		
+		{% empty %}
+		    <option name value="">No data here</option>
+		{% endfor %}
+		</select>
+		<hr>
+		<button class="btn btn-dark text-left" name="liftover" id ="button" type="submit" >Submit</button>
+	</div>
+	</form>
+</div>
+	
+</div>
+
+
+{% endblock %}

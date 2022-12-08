@@ -1,0 +1,169 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% block title %} Result_page {% endblock %}
+{% block content %}
+<div style="background-color:grey;">
+<br>
+<h2 align="center"><font color="white" size='7'><b>Download Page</b></font></h2>
+<br>
+<h4 align="center"><font color="white" size='5'>Function: {{ function }}</font></h4>
+<br>
+</div>
+
+<br>
+<div class='container'>
+	<div style='text-align:right'>
+	<a href="/filedel" title="Delete" style='text-align:right' data-toggle="modal" data-target="#confirmDeleteModal" id="deleteButton" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Delete</a>
+	</div>
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" caller-id="" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body confirm-delete">
+        <p><font size='4'>Delete the data and the record of the result?</font></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="confirmDeleteButtonModal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).on('click', '#deleteButton', function () {
+        $("#confirmDeleteModal").attr("caller-id", $(this).attr("id"));
+      });
+
+    $(document).on('click', '#confirmDeleteButtonModal', function () {
+      var caller = $("#confirmDeleteButtonModal").closest(".modal").attr("caller-id");
+      window.location = $("#".concat(caller)).attr("href");
+    });
+
+</script>
+<hr>
+<br>
+<div class='card shadow p-3 mb-5 bg-white rounded'>
+    <div class ='card-body'>
+	<h3 class="card-title">{{ select_project }}</h3>
+	<hr>
+	<p><b>Date:</b> {{ Date }}</p>
+	{% if option_list %}
+	<p><b>Chromosome number:</b> {{ Chr_num }}</p>
+	<p><b>Impute the full chromosome:</b> {{ Entire_chr }}</p>
+	<p><b>Start position:</b> {{ Sta_posi }}</p>
+	<p><b>End position:</b> {{ End_posi }}</p>
+	<p><b>Minor allele frquency option:</b> {{ Maf }}</p>
+	<p><b>Single SNP missing rate option:</b> {{ Sin_miss }}</p>
+	<p><b>Individual SNP missing rate option:</b> {{ Indi_miss }}</p>
+	<p><b>Hardy-Weinberg Equilibrium option:</b> {{ Hardy }}</p>
+	<p><b>Reference group select:</b> {{ Ref }}</p>
+	{% endif %}
+	{% if option_list_impute5 %}
+	<p><b>Chromosome number:</b> {{ Chr_num }}</p>
+	<p><b>Minor allele frquency option:</b> {{ Maf }}</p>
+	<p><b>Single SNP missing rate option:</b> {{ Sin_miss }}</p>
+	<p><b>Individual SNP missing rate option:</b> {{ Indi_miss }}</p>
+	<p><b>Hardy-Weinberg Equilibrium option:</b> {{ Hardy }}</p>
+	<p><b>Reference group select:</b> {{ Ref }}</p>
+	{% endif %}
+	{% if option_list_beagle5 %}
+	<p><b>Chromosome number:</b> {{ Chr_num }}</p>
+	<p><b>Minor allele frquency option:</b> {{ Maf }}</p>
+	<p><b>Single SNP missing rate option:</b> {{ Sin_miss }}</p>
+	<p><b>Individual SNP missing rate option:</b> {{ Indi_miss }}</p>
+	<p><b>Hardy-Weinberg Equilibrium option:</b> {{ Hardy }}</p>
+	<p><b>Reference group select:</b> {{ Ref }}</p>
+	{% endif %}
+	<br>
+	<p><b>Progress:</b> {{ process }} </p>
+	<hr>
+	<h5><b>※Result download here</b></h5>
+	{% if download1 and download2 %}
+
+	<p><u>Reference format</u>
+		{% if zip_file %}
+	<a  href="/filedownload" class="badge badge-light">{{ select_project }}</a>
+        {% endif %}
+	</p>	
+	
+	{% else %}
+	
+	<p><u>PLINK format</u>
+		{% if zip_file %}
+	<a  href="/filedownload" class="badge badge-light">{{ select_project }}</a>
+        {% endif %}
+	</p>
+
+	<p><u>VCF format</u>
+		{% if zip_file2 %}
+	<a  href="/filedownload_vcf" class="badge badge-light">{{ select_project }}</a>
+        {% endif %}
+	
+	</p>
+	{% endif %}
+
+	{% if zip_file_log %}
+	<h5><b>※Log</b></h5>
+	<p>
+	<a  href="/filedownload_qc_log" class="badge badge-light">Quality control</a>
+    &nbsp;
+	<a  href="/filedownload_sp1_log" class="badge badge-light">Pre-phasing 1</a>
+	&nbsp;
+	<a  href="/filedownload_sp2_log" class="badge badge-light">Pre-phasing 2</a>
+	&nbsp;
+	<a  href="/filedownload_sp3_log" class="badge badge-light">Pre-phasing 3</a>
+	&nbsp;
+	<a  href="/filedownload_log" class="badge badge-light">Imputation</a>
+	&nbsp;
+	<a  href="/filedownload_info" class="badge badge-light">Info file</a>
+	</p>
+	{% endif %}
+	
+	{% if imp5_log %}
+	<h5><b>※Log</b></h5>
+	<p>
+	<a  href="/filedownload_qc_log" class="badge badge-light">Quality control</a>
+    &nbsp;
+	<a  href="/filedownload_sp1_log" class="badge badge-light">Pre-phasing</a>
+	&nbsp;
+	<a  href="/filedownload_log" class="badge badge-light">Imputation</a>
+	</p>
+	{% endif %}
+
+	{% if beagle_log %}
+	<h5><b>※Log</b></h5>
+	<p>
+	<a  href="/filedownload_qc_log" class="badge badge-light">Quality control</a>
+    &nbsp;
+	<a  href="/filedownload_sp1_log" class="badge badge-light">Pre-phasing</a>
+	&nbsp;
+	<a  href="/filedownload_log" class="badge badge-light">Imputation</a>
+	</p>
+	{% endif %}	
+	</div>
+</div>
+
+
+{% if picture %}
+   
+<div class='card shadow p-3 mb-5 bg-white rounded'>
+	<div class='card-heading'>
+        <h4><b>Result plot</b></h4>
+    </div>
+    <div class ='card-body'>
+	<hr>
+	{% load static %}
+	<p><font size="4"><strong style="background:#C4E1FF">Info vs MAF distribution</strong></font></p>
+        <img src="{% static picture %}" style="display:block; margin:auto; " width=600>
+    <br>
+	<p><font size="4"><strong style="background:#C4E1FF">SNP numbers vs MAF distribution ※ ~0.05 </strong></font></p>
+        <img src="{% static picture2 %}" style="display:block; margin:auto; " width=600>
+    <br>
+	<p><font size="4"><strong style="background:#C4E1FF">SNP numbers vs MAF distribution ※ ~0.5 </strong></font></p>
+    <img src="{% static picture3 %}" style="display:block; margin:auto; " width=1000>
+	</div>
+</div>
+{% endif %}
+</div>
+
+
+{% endblock %}

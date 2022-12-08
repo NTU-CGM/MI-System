@@ -1,0 +1,31 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% block title %} Log in {% endblock %}
+{% block content %}
+{% for message in messages %}
+<div class='container'>
+<div class='alert alert-{{ message.tags }}'>{{ message }}</div>
+{% endfor %}
+</div>
+<br>
+<br>
+<div class='container'>
+	<div class='card shadow p-3 mb-5 bg-white rounded'>
+		<div class='card-heading'>
+			<form name='login_data' action='.' method='POST'>
+			{% csrf_token %}
+			<h3><b>Log in</b></h3>
+			<hr>
+		</div>
+		<div class='card-body'>
+			<table>
+				{{ login_form.as_table }}
+			</table>
+			<br>
+			<button class="btn btn-dark text-left" type="submit">Log in</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

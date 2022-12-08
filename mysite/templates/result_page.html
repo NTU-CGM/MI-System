@@ -1,0 +1,47 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% block title %} Result_page {% endblock %}
+{% block content %}
+<script>
+$(document).ready(function() {
+const elements = document.querySelectorAll('#do_button')
+for (var i = 0; i < elements.length; i += 1) {
+  elements[i].addEventListener('click', function () {
+      var name = event.target.name;
+	  var download_window = window.open('', '_blank');
+	  $.ajaxSetup({
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+      });
+	  $.post(".",{'data': name},function(){
+	      download_window.location.href="/filedownload/";
+	  })       
+	  
+    })
+ } 
+});
+
+</script>
+<br>
+<div class='container'>
+<h2><b>User Result Page</b></h2>
+<br>
+<hr>
+<br>
+{% for dir in result reversed%}
+	<div class='card shadow p-3 mb-5 bg-white rounded'>
+		<div class='card-heading'>
+		    <h4><b>{{dir}}</b></h4>
+        </div>
+        <div class ='card-body'>
+		    <input type="button" value ="Download" name="{{dir}}" class="btn btn-dark text-left" id="do_button">
+
+		</div>
+	</div>
+{% empty %}
+<h3>No Result here</h3>
+	
+{% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% block title %} Request received  {% endblock %}
+{% block content %}
+<script defer="defer">
+$(document).ready(function() {
+window.location.href ="/success_page2/"
+});
+</script>
+<div class='container'>
+</br>
+</br>
+<h1 align="center">Your request has received</h1>
+</br>
+
+<h3 align="center"><font color="blue">User ID:  {{ username }} </h3>
+{% load static %}
+<img src="{% static "images/loading.gif" %}" style="display:block; margin:auto; " width=450>
+</br>
+<h3 align="center"><font color="black">The request is running, please wait.</h3>
+
+</div>
+{% endblock %}

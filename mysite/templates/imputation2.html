@@ -1,0 +1,53 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% block title %} 輸入資料測試 {% endblock %}
+{% block content %}
+<script>
+var show = 0;
+$(document).ready(function() {
+    $('#id_user_entirechr:checkbox').click(function() {
+	    if (show == 0) {
+	    $('#id_user_position1').attr('disabled',true)
+		                       .css('backgroundColor','#F8F8F8')
+	    $('#id_user_position1').prev('label').css('color','#A0A0A0')			   
+		$('#id_user_position2').attr('disabled',true)
+		                       .css('backgroundColor','#F8F8F8')
+	    $('#id_user_position2').prev('label').css('color','#A0A0A0')
+		show = 1;
+		} else if (show == 1) {
+	    $('#id_user_position1').attr('disabled',false)
+		                       .css('backgroundColor','')
+	    $('#id_user_position1').prev('label').css('color','')			   
+		$('#id_user_position2').attr('disabled',false)
+		                       .css('backgroundColor','')
+	    $('#id_user_position2').prev('label').css('color','')
+		show = 0 ;
+		};
+		});
+
+		
+				});
+		
+</script>
+{% for message in messages %}
+<div class='alert alert-{{message.tags}}'>
+{{ message }}
+</div>
+{% endfor %}
+<div class='container'>
+	<br>
+	<br>
+	<div class='card shadow p-3 mb-5 bg-white rounded'>
+		<form enctype="multipart/form-data" id = "user_form" action="." method="POST">
+		{% csrf_token %}
+			<div class='card-body'>
+			    <h3 class="card-title">Analysis Setting</h3>
+				<hr>
+				{{ form.as_p }}
+			<hr>
+			<button class="btn btn-dark text-left" id ="button" type="submit" >Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+asgiref @ file:///tmp/build/80754af9/asgiref_1594338739818/work
+brotlipy==0.7.0
+certifi==2020.6.20
+cffi @ file:///tmp/build/80754af9/cffi_1600699180754/work
+chardet==3.0.4
+conda==4.9.0
+conda-package-handling==1.7.0
+cryptography==2.9.2
+cycler==0.10.0
+Django==3.0.5
+et-xmlfile==1.0.1
+idna @ file:///tmp/build/80754af9/idna_1593446292537/work
+jdcal==1.4.1
+kiwisolver==1.2.0
+matplotlib @ file:///tmp/build/80754af9/matplotlib-base_1603376012865/work
+mkl-fft==1.1.0
+mkl-random==1.1.1
+mkl-service==2.3.0
+numpy==1.18.5
+olefile==0.46
+openpyxl @ file:///tmp/build/80754af9/openpyxl_1598113097404/work
+pandas @ file:///tmp/build/80754af9/pandas_1598371486213/work
+Pillow @ file:///tmp/build/80754af9/pillow_1602788700959/work
+pycosat==0.6.3
+pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1594392929924/work
+pyparsing==2.4.7
+PySocks @ file:///tmp/build/80754af9/pysocks_1594394576006/work
+python-dateutil==2.8.1
+pytz==2020.1
+requests @ file:///tmp/build/80754af9/requests_1592841827918/work
+ruamel-yaml==0.15.87
+six==1.15.0
+sqlparse==0.3.1
+tornado==6.0.4
+tqdm @ file:///tmp/build/80754af9/tqdm_1593446365756/work
+urllib3==1.25.9
+xlrd==1.2.0

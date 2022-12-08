@@ -1,0 +1,31 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% block title %} 輸入資料測試 {% endblock %}
+{% block content %}
+<div class='container'>
+	{% if message %}
+		<div class='alert alert-warning'>{{ message }}</div>
+		User name: {{ user_name }}</br>
+		MAF選項: {{ user_mafoption }}</br>
+                GENO選項: {{ user_genooption }} </br>
+                MIND選項: {{ user_mindoption }} </br>
+                Relatedness選項: {{ user_relatedness }} </br>
+                Sex Check選項: {{ user_sexcheck }} </br>
+                執行結果: {{ word }}
+	{% endif %}
+	<div class='panel panel-primary'>
+		<div class='panel-heading'>
+                        <form enctype="multipart/form-data" action="." method="POST">
+			{% csrf_token %}
+			<h3>Analysis Setting</h3>
+		</div>
+		<div class='panel-body'>
+		    {{ form.as_p }}
+		</div>
+		<div class='panel-footer'>
+			<input type='submit' value='送出'>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

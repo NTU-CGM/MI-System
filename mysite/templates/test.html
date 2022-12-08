@@ -1,0 +1,45 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% block title %} 表單測試 {% endblock %}
+{% block content %}
+<div class='container'>
+<form name='my form' action='/' method='GET'>
+    <label for='byear'>出生年:</label>
+	<select name='byear'>
+	    {% for year in years %}
+	    <option value='{{ year }}'>{{ year }}</option>
+	    {% endfor %}
+	</select><br/>
+	select color :
+	<input type='checkbox' name='fcolor' value='Green'>Green
+	<input type='checkbox' name='fcolor' value='Yellow'>Yellow
+	<input type='checkbox' name='fcolor' value='Red'>Red
+	<input type='checkbox' name='fcolor' value='Blue'>Blue
+	<input type='checkbox' name='fcolor' value='Orange'>Orange<br/>
+	
+    <label for='user_id'>Your ID:</label>
+	<input id='user_id' type='text' name='user_id'>
+	<label for='user_pass'>Your Password:</label>
+	<input id='user_pass' type='password' name='user_pass'>
+	<input type='submit' value='登入'>
+	<input type='reset' value='清除重填'>
+</form>
+Your ID:  {{ urid | default:"未輸入ID"}}<br/>
+{% if vertified  %}
+    <em>  你通過了驗證</em>
+{% else %}
+    <em>  密碼輸入錯誤</em>
+{% endif %}
+<br/>
+出生年: {{ uryear }}
+<br/>
+select color:  
+{% for c in urfcolor %}
+    {{ c }}
+{% empty %}
+    沒有選擇顏色
+{% endfor %}
+
+<br/>
+</div>
+{% endblock %}

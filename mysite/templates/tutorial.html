@@ -1,0 +1,46 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% block title %} Tutorial {% endblock %}
+{% block content %}
+
+{% for message in messages %}
+<div class='alert alert-{{message.tags}}'>
+{{ message }}
+</div>
+{% endfor %}
+
+<div class='container'>
+	<br>
+	<br>
+	<div class='card shadow p-3 mb-5 bg-white rounded'>
+	<div class='card-body'>
+	<h3 class="card-title"><font size="6"><b>Tutorial</b></font></h3>
+	<br>
+	<hr>
+	<p><font size="5"><strong style="background:#C4E1FF">※Imputation</strong></font></p>
+	<br>
+	<p><font size="4">MI-System accept the vcf.gz and plink format(.bed, .bim, .fam) files to upload, and allow users to upload through browser or url link(google drive)</font></p>
+	<p><font size="4">※Notice that the files need to follow the rules:</font></p>
+	<ul style='list-style-position:outside;'>
+	<li>Only contain single chromosome data
+	<li>Coordinates version in hg19 (Except that using the hapmap3 as reference panels requires hg18)
+	<li>Google drive url need to open the acesss right of the file
+	</ul>
+	<p><font size="4">MI-System also provides two reference panels imputation:</font></p>
+	<ul style='list-style-position:outside;'>
+	<li>Improved reference panels is the function that describes in IMPUTE2 ("Imputation with two phased reference panels") option
+	<li>Merge reference panels is the function that describes in IMPUTE2 ("Imputation with two phased reference panels (merge reference panels)") option
+	</ul>
+	<p><font size="4">Example file can download <a  href="/example_download" class="badge badge-light">Here</a></font></p>
+	<p><font size="4">Tutorial video: </font></p>
+	<iframe width="720" height="480" src="https://www.youtube.com/embed/-kfslbTS-pw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<br>
+	<br>
+	<p><font size="5"><strong style="background:#C4E1FF">※Result download and delete</strong></font></p>
+	<br>
+	<p><font size="4">Tutorial video: </font></p>
+	<iframe width="720" height="480" src="https://www.youtube.com/embed/6YEh9X9oWAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% block title %} 註冊頁面 {% endblock %}
+{% block content %}
+{% if message %}
+<div class='alert alert-warning'>{{ message }}</div>
+{% endif %}
+<br>
+<br>
+<div class='container'>
+	<div class='card shadow p-3 mb-5 bg-white rounded'>
+		<div class='card-heading'>
+			<form name='register_data' action='.' method='POST'>
+			{% csrf_token %}
+			<h3><b>Register</b></h3>
+			<hr>
+		</div>
+		<div class='card-body'>
+			<table>
+				{{ register_form.as_table }}
+			</table>
+			<br>
+			<button class="btn btn-dark text-left" type="submit">Register</button>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% block title %} Imputation_impute5 alpha test {% endblock %}
+{% block content %}
+<script>
+var show = 0;
+$(document).ready(function() {
+    $('#id_user_entirechr:checkbox').click(function() {
+	    if (show == 0) {
+	    $('#id_user_position1').attr('disabled',true)
+		                       .css('backgroundColor','#F8F8F8')
+	    $('#id_user_position1').prev('label').css('color','#A0A0A0')			   
+		$('#id_user_position2').attr('disabled',true)
+		                       .css('backgroundColor','#F8F8F8')
+	    $('#id_user_position2').prev('label').css('color','#A0A0A0')
+		show = 1;
+		} else if (show == 1) {
+	    $('#id_user_position1').attr('disabled',false)
+		                       .css('backgroundColor','')
+	    $('#id_user_position1').prev('label').css('color','')			   
+		$('#id_user_position2').attr('disabled',false)
+		                       .css('backgroundColor','')
+	    $('#id_user_position2').prev('label').css('color','')
+		show = 0 ;
+		};
+		});
+	$('#id_use_url:checkbox').click(function() {
+	 $('#url_region').slideToggle();
+	  });
+		
+				});
+		
+</script>
+{% for message in messages %}
+<div class='alert alert-{{message.tags}}'>
+{{ message }}
+</div>
+{% endfor %}
+<div class='container'>
+	<br>
+	<br>
+	<div class='card shadow p-3 mb-5 bg-white rounded'>
+		<form enctype="multipart/form-data" id = "user_form" action="." method="POST">
+		{% csrf_token %}
+			<div class='card-body'>
+			    <h3 class="card-title">Imputation (IMPUTE5 test version)</h3>
+				<hr>
+				<p><font size="4"><strong style="background:#C4E1FF">※File option</strong></font></p>
+				
+				<p>{{ form.user_name.label }} {{ form.user_name }}</p>
+				<p>{{ form.file_field.label }} {{ form.file_field }}</p>
+			    <p>{{ form.use_url.label }} {{ form.use_url }}</p>
+				<div id ='url_region' style="display:none;">
+				<p><font size="2">Allow google drive link</font></p>
+				<p><font size="2">※Notice that the link need to open the authority of the google drive</font></p>
+				<p>{{ form.file_url_vcf.label }} {{ form.file_url_vcf }}</p>
+				<p>--------------------------------------------------------</p>
+				<p>{{ form.file_url_bed.label }} {{ form.file_url_bed }}</p>
+				<p>{{ form.file_url_bim.label }} {{ form.file_url_bim }}</p>
+				<p>{{ form.file_url_fam.label }} {{ form.file_url_fam }}</p>
+				</div>
+				
+				<p>{{ form.user_chromosome.label }} {{ form.user_chromosome }}</p>
+
+				<p><font size="4"><strong style="background:#C4E1FF">※Quality control option</strong></font></p>
+				
+				<p>{{ form.user_mafoption.label }} {{ form.user_mafoption }}</p>
+				<p>{{ form.user_genooption.label }} {{ form.user_genooption }}</p>
+				<p>{{ form.user_mindoption.label }} {{ form.user_mindoption }}</p>
+				<p>{{ form.user_hwe.label }} {{ form.user_hwe }}</p>
+				<p><font size="4"><strong style="background:#C4E1FF">※Reference option (if need to use custom reference, please select 'Custom' )</strong></font></p>
+				
+				<p>{{ form.user_group.label }} {{ form.user_group }}</p>
+
+
+			<hr>
+			<button class="btn btn-dark text-left" id ="button" type="submit" >Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

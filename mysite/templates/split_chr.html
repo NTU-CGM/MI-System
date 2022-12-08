@@ -1,0 +1,44 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% block title %} Split chromosome {% endblock %}
+{% block content %}
+<script>
+$(document).ready(function(){
+  $('#id_use_url:checkbox').click(function() {
+ $('#url_region').slideToggle();
+  });
+});
+
+		
+</script>
+
+<div class='container'>
+	<br>
+	<br>
+	<div class='card shadow p-3 mb-5 bg-white rounded'>
+		<form enctype="multipart/form-data" id = "user_form" action="." method="POST">
+		{% csrf_token %}
+			<div class='card-body'>
+			    <h3 class="card-title">Split chromosome</h3>
+				<hr>
+				<p><font size="4"><strong style="background:#C4E1FF">※File option</strong></font></p>
+				<p>{{ form.user_name.label }} {{ form.user_name }}</p>
+				<p>{{ form.data_name.label }} {{ form.data_name }}</p>
+			    <p>{{ form.file_field.label }} {{ form.file_field }}</p>
+				<p>{{ form.use_url.label }} {{ form.use_url }}</p>
+				<div id ='url_region' style="display:none;">
+				<p><font size="2">Allow google drive link</font></p>
+				<p><font size="2">※Notice that the link need to open the authority of the google drive</font></p>
+				<p>{{ form.file_url_vcf.label }} {{ form.file_url_vcf }}</p>
+				<p>--------------------------------------------------------</p>
+				<p>{{ form.file_url_bed.label }} {{ form.file_url_bed }}</p>
+				<p>{{ form.file_url_bim.label }} {{ form.file_url_bim }}</p>
+				<p>{{ form.file_url_fam.label }} {{ form.file_url_fam }}</p>
+				</div>
+			<hr>
+			<button class="btn btn-dark text-left" id ="button" type="submit" >Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

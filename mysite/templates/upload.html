@@ -1,0 +1,27 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% block title %} 輸入資料測試 {% endblock %}
+{% block content %}
+
+{% for message in messages %}
+<div class='alert alert-{{message.tags}}'>
+{{ message }}
+</div>
+{% endfor %}
+<div class='container'>
+	<br>
+	<br>
+	<div class='card shadow p-3 mb-5 bg-white rounded'>
+		<form enctype="multipart/form-data" id = "user_form" action="." method="POST">
+		{% csrf_token %}
+			<div class='card-body'>
+			    <h3 class="card-title">Upload Test</h3>
+				<hr>
+				{{ form.as_p }}
+			<hr>
+			<button class="btn btn-dark text-left" id ="button" type="submit" >Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}
